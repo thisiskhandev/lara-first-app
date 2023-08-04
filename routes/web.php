@@ -21,11 +21,11 @@ Route::get("/about-us", function () {
     return "<h1>About US</h1>";
 });
 
-Route::get('post/{id?}/comment/{commendId?}', function (string $id = null, string $comment) {
+Route::get('post/{postId?}/comment/{commentId?}', function (string $id = null, string $comment = null) {
     // return "<h1>Posts Param: " . $id . "</h1>";
     if ($id) {
         return "<h1>Posts Param: $id </h1>" . "<h2>Comment: $comment </h2>";
     } else {
         return "<h1>No Id found</h1>";
     }
-});
+})->whereNumber('postId')->whereAlpha('commentId');
