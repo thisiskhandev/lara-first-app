@@ -29,11 +29,16 @@ Route::get("/about-us", function () {
 Route::get('posts/{id?}/comment/{comment?}/', [PostController::class, "postFun"])->name('posts')->whereNumber('id')->whereAlpha('comment');
 
 Route::get('/about', function () {
-    return view('/pages/about');
+    return view('pages.about');
 });
 
 Route::get('/contact', function () {
-    return view('/pages/contact');
+    return view('pages.contact');
 })->name('contact');
 
 Route::redirect('/about-us', 'about', 301);
+
+// 404
+Route::fallback(function () {
+    return "some error...";
+});
