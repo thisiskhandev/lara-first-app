@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 Route::get("/about-us", function () {
-    return "<h1>About US</h1>";
+    return "<a href='/'>Homepage</a> <h1>About US</h1>";
+})->name('about');
+
+Route::get('posts/{id?}/comment/{comment?}/', [PostController::class, "postFun"])->name('posts')->whereNumber('id')->whereAlpha('comment');
+
+Route::get('/about', function () {
+    return view('/pages/about');
 });
 
-Route::get('post/{postId?}/comment/{commentId?}', function (string $id = null, string $comment = null) {
-    // return "<h1>Posts Param: " . $id . "</h1>";
-    if ($id) {
-        return "<h1>Posts Param: $id </h1>" . "<h2>Comment: $comment </h2>";
-    } else {
-        return "<h1>No Id found</h1>";
-    }
-})->whereNumber('postId')->whereAlpha('commentId');
+Route::get('/contact', function () {
+    return view('/pages/contact');
+})->name('contact');
+
+Route::redirect('/about-us', 'about', 301);
