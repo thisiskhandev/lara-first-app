@@ -1,12 +1,14 @@
-@php
-    $fruits = ['one' => 'Apple','two' => 'Banana','three' =>  'Mango'];
+{{-- @php
+$fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
 @endphp
-@includeWhen(true, "components.header", ['pageTitle' => 'Homepage', 'fruitNames' => $fruits])
+@includeWhen(true, "layout.header", ['pageTitle' => 'Homepage', 'fruitNames' => $fruits]) --}}
 
-    <h1>Homepage</h1>
-    <a href="{{ route('about') }}">About</a>
-    {{-- <a href="{{ route('posts') }}/11abc">Posts</a> --}}
-    <a href="{{ route('posts', '123') }}/abc">Posts</a>
-    <a href="{{ route('contact') }}">Contact Page</a>
+@extends('layout.masterlayout')
+@section('pageTitle', 'Home - Page')
 
-@include("components.footer")
+
+@section('content')
+<h1>Homepage - Heading</h1>
+@endsection
+
+{{-- @include("layout.footer") --}}

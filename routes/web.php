@@ -39,6 +39,6 @@ Route::get('/contact', function () {
 Route::redirect('/about-us', 'about', 301);
 
 // 404
-Route::fallback(function () {
-    return "some error...";
-});
+// Route::fallback(function () {
+//     return "some error...";
+// });

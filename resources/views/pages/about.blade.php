@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
-</head>
-<body>
-    <h1>About Page</h1>
+@extends('layout.masterlayout')
+@section('pageTitle', 'About Us - Page')
 
-    <a href="{{ route('home') }}">Homepage</a>
-</body>
-</html>
+@section('content')
+{{-- <h1>About - Heading</h1> --}}
+@endsection
