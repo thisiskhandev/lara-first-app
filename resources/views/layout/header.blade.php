@@ -50,6 +50,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users') }}">Users</a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

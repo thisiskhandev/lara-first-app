@@ -36,6 +36,11 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
+Route::get('/users', function () {
+    $user_one = 'Hassan Khan';
+    return view('pages.users', ['user' => $user_one]);
+})->name('users');
+
 Route::redirect('/about-us', 'about', 301);
 
 // 404
