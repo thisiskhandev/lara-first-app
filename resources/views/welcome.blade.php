@@ -52,5 +52,11 @@
     @endforeach
     </ul>
 
+    <script>
+        // let data = @json($colors);
+        let data = {{Js::from($colors)}};
+        console.log(data);
+    </script>
+
 </body>
 </html>
