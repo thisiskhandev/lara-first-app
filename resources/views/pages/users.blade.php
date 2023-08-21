@@ -22,15 +22,17 @@
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">City</th>
+            <th scope="col">View Record</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($user as $id => $userdata)
         <tr>
-            <th scope="row">{{$id + 1}}</th>
+            <th scope="row">{{$id}}</th>
             <td>{{$userdata['name']}}</td>
             <td>{{$userdata['phone']}}</td>
             <td>{{$userdata['city']}}</td>
+            <td><a href="{{route('user', $id)}}"><button type="button" class="btn btn-dark w-100">View</button></a></td>
         </tr>
         @endforeach
     </tbody>

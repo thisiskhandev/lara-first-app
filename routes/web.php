@@ -36,6 +36,22 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
+function getUsers()
+{
+    return [
+        ['name' => 'Khan', 'phone' => 99875641231, 'city' => 'Karachi'],
+        ['name' => 'Smith', 'phone' => 1234567890, 'city' => 'New York'],
+        ['name' => 'Garcia', 'phone' => 9876543210, 'city' => 'Los Angeles'],
+        ['name' => 'Johnson', 'phone' => 5551234567, 'city' => 'Chicago'],
+        ['name' => 'Liu', 'phone' => 8876543210, 'city' => 'San Francisco'],
+        ['name' => 'Kim', 'phone' => 1239874560, 'city' => 'Seoul'],
+        ['name' => 'Martinez', 'phone' => 7778889999, 'city' => 'Mexico City'],
+        ['name' => 'Chen', 'phone' => 6665554444, 'city' => 'Shanghai'],
+        ['name' => 'Brown', 'phone' => 5558887777, 'city' => 'London'],
+        ['name' => 'Gonzalez', 'phone' => 9876543210, 'city' => 'Madrid'],
+    ];
+}
+
 Route::get('/users', function () {
     $user_one = 'Hassan Khan';
     // METHOD 1
@@ -57,21 +73,18 @@ Route::get('/users', function () {
     //     'city' => ''
     // ]);
 
-    $usersData = [
-        ['name' => 'Khan', 'phone' => 99875641231, 'city' => 'Karachi'],
-        ['name' => 'Smith', 'phone' => 1234567890, 'city' => 'New York'],
-        ['name' => 'Garcia', 'phone' => 9876543210, 'city' => 'Los Angeles'],
-        ['name' => 'Johnson', 'phone' => 5551234567, 'city' => 'Chicago'],
-        ['name' => 'Liu', 'phone' => 8876543210, 'city' => 'San Francisco'],
-        ['name' => 'Kim', 'phone' => 1239874560, 'city' => 'Seoul'],
-        ['name' => 'Martinez', 'phone' => 7778889999, 'city' => 'Mexico City'],
-        ['name' => 'Chen', 'phone' => 6665554444, 'city' => 'Shanghai'],
-        ['name' => 'Brown', 'phone' => 5558887777, 'city' => 'London'],
-        ['name' => 'Gonzalez', 'phone' => 9876543210, 'city' => 'Madrid'],
-    ];
+    $usersData = getUsers();
 
     return view('pages.users', ['user' => $usersData]);
 })->name('users');
+
+Route::get('/user/{id}', function ($id) {
+    $users = getUsers();
+    abort_if(!isset($users[$id]), 404); // Send to 404 if undefined key found in URL param
+    $user = $users[$id];
+    // return print_r($user);
+    return view('pages.user', ['userData' => $user, 'id' => $id]);
+})->name('user');
 
 Route::redirect('/about-us', 'about', 301);
 
