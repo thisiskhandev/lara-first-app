@@ -13,9 +13,9 @@
 @push('script')
     <script>
         let timer = 5000;
-        let time = 0;
+        let time = 6;
         const intervalTimeout = setInterval(() => {
-            time = time + 1;
+            time = time - 1;
             document.getElementById("redirectTimer").innerText = time;
         }, 1000);
 
@@ -24,6 +24,6 @@
             clearInterval(intervalTimeout);
             clearTimeout(timeout);
             window.location.href = "/";
-        }, timer + 1000);
+        }, timer);
     </script>
 @endpush

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TestingInvokeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,8 +88,12 @@ Route::get('/users', function () {
 //     return view('pages.single-pages.user', ['userData' => $user, 'id' => $id]);
 // })->name('user');
 
-Route::get('/', [PageController::class, 'showHome'])->name('home');
-Route::get('/user/{id}', [PageController::class, 'showUser'])->name('user');
+Route::controller(PageController::class)->group(function () {
+    Route::get('/', 'showHome')->name('home');
+    Route::get('/user/{id}', 'showUser')->name('user');
+});
+
+Route::get('/testing', TestingInvokeController::class);
 
 Route::redirect('/about-us', 'about', 301);
 
