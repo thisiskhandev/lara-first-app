@@ -2,9 +2,9 @@
     <div class="card-header">
         Featured
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+    <ul class="list-group list-group-flush list-inline">
+        <li class="list-group-item"><a href="{{route('home')}}">Home</a></li>
+        <li class="list-group-item"><a href="{{route('about')}}">About</a></li>
+        <li class="list-group-item"><a href="{{route('contact')}}">Contact Us</a></li>
     </ul>
 </div>

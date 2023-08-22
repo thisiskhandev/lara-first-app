@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,9 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
 Route::get("/about-us", function () {
     return "<a href='/'>Homepage</a> <h1>About US</h1>";
@@ -78,13 +79,16 @@ Route::get('/users', function () {
     return view('pages.users', ['user' => $usersData]);
 })->name('users');
 
-Route::get('/user/{id}', function ($id) {
-    $users = getUsers();
-    abort_if(!isset($users[$id]), 404); // Send to 404 if undefined key found in URL param
-    $user = $users[$id];
-    // return print_r($user);
-    return view('pages.user', ['userData' => $user, 'id' => $id]);
-})->name('user');
+// Route::get('/user/{id}', function ($id) {
+//     $users = getUsers();
+//     abort_if(!isset($users[$id]), 404); // Send to 404 if undefined key found in URL param
+//     $user = $users[$id];
+//     // return print_r($user);
+//     return view('pages.single-pages.user', ['userData' => $user, 'id' => $id]);
+// })->name('user');
+
+Route::get('/', [PageController::class, 'showHome'])->name('home');
+Route::get('/user/{id}', [PageController::class, 'showUser'])->name('user');
 
 Route::redirect('/about-us', 'about', 301);
 

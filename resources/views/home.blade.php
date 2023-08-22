@@ -9,14 +9,16 @@ $fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
 @prepend('internal-style')
 <style>
     h1 {
-        background: pink;
+        background: #333;
+        color: #fff;
+        padding: 10px 10px;
     }
 </style>
 @endprepend
 
 
 @section('content')
-<h1>Homepage - Heading</h1>
+<h1>Homepage</h1>
 @endsection
 
 @push('script')
