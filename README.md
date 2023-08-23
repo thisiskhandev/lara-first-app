@@ -1,19 +1,16 @@
 # _LARAVEL COMMANDS_
 ### Helping commands
-
-php artisan help
+php artisan help <br>
 php aritsan help make:controller
 ### Run Laravel
-
 php artisan run
 ### Create controller
-php artisan make:controller <name of controller>
+php artisan make:controller [name of controller]
 ### Create invokable controller
-php artisan make:controller <name of controller> --invokable
+php artisan make:controller [name of controller] --invokable
 ### Get list of all vendors
 php artisan route:list --except-vendor
 ### Get list of selected routes only
-
 php artisan route:list --path=user
 ### Create Table in DB (remeber to add prefix -> create and suffix -> table)
 php artisan make:migration create_student_table
