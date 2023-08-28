@@ -72,16 +72,20 @@ php artisan make:migration update_students_table --table=students
 ### Rename an existing table name
 
 php artisan make:migration rename_student_to_students_table
+
 <pre>
 public function up()
-{
-Schema::rename('old_table_name', 'new_table_name');
-}
+    {
+        Schema::rename('old_table_name', 'new_table_name');
+    }
 </pre>
-<code>
+<pre>
 public function down()
-{
-Schema::rename('new_table_name', 'old_table_name');
-}
-</code>
+    {
+        Schema::rename('new_table_name', 'old_table_name');
+    }
+</pre>
+### Clear cache/config
 
+php artisan cache:clear <br/>
+php artisan config:clear

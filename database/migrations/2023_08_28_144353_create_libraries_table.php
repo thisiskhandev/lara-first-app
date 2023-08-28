@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student', function (Blueprint $table) {
+        Schema::create('libraries', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
-            $table->string('email', 40)->nullable()->unique();
-            $table->float('percentage', 3, 2);
-            $table->timestamps();
+            $table->unsignedBigInteger('stu_id');
+            $table->foreign('stu_id')->references('id')->on('students');
+            $table->string('book');
+            $table->date('due_date')->nullable();
+            $table->boolean('status');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('libraries');
     }
 };
