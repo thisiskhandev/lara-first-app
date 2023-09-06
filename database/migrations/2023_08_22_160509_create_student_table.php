@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('student', function (Blueprint $table) {
-            // $table->id();
-            $table->integer('student_id');
+            $table->id();
+            // $table->integer('student_id');
+            // $table->increments('student_id');
             $table->string('name', 30);
             $table->string('email', 40)->nullable()->unique();
             $table->float('percentage', 3, 2)->comment('Student Percentage');
             $table->timestamps();
-            $table->primary('student_id');
+            // $table->primary('id');
         });
     }
 
