@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('student', function (Blueprint $table) {
-            $table->string('city', 30);
+            $table->string('city', 30)->default('No City');
+            $table->integer('age')->unsigned(); // User shall not be add with positive or negative values
         });
     }
 
