@@ -18,7 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('stu_id'); // This will work for normal id() not for integer()
             // $table->integer('stu_id');
             // $table->bigIncrements('stu_id');
-            $table->foreign('stu_id')->references('id')->on('students');
+            $table->foreign('stu_id')
+                ->references('id')
+                ->on('students')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('book');
             $table->date('due_date')->nullable();
             $table->boolean('status');
