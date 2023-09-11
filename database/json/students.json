@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Student 1",
+        "email": "student1@mail.com",
+        "age": 28
+    },
+    {
+        "name": "Student 2",
+        "email": "student2@mail.com",
+        "age": 35
+    },
+    {
+        "name": "Student 3",
+        "email": "student3@mail.com",
+        "age": 20
+    },
+    {
+        "name": "Student 4",
+        "email": "student4@mail.com",
+        "age": 19
+    },
+    {
+        "name": "Student 5",
+        "email": "student5@mail.com",
+        "age": 40
+    },
+    {
+        "name": "Student 6",
+        "email": "student6@mail.com",
+        "age": 30
+    }
+]

@@ -102,3 +102,11 @@ php artisan make:seeder StudentSeeder
 ### Run all seed commands in _DatabaseSeeder_ file
 
 php artisan db:seed
+
+### First freshing the migrate files and running all seeders
+
+php artisan migrate:fresh --seed
+
+### Run only specific seeder file
+
+php artisan db:seed --class=UserSeeder
