@@ -17,7 +17,18 @@ class StudentSeeder extends Seeder
     public function run()
     {
 
+        // 4 - FAKE DATA USING FAKER
+        for ($i = 1; $i <= 10; $i++) {
+            student::create([
+                'name' => fake()->name(),
+                'email' => fake()->unique()->email(),
+                'city' => fake()->city(),
+                'age' => fake()->numberBetween(18, 30)
+            ]);
+        }
+
         // 3 - ADDING DATA USING JSON CREATED A FOLDER IN DB
+        /*
         $json = File::get(path: 'database/json/students.json');
         $students = collect(json_decode($json));
         $students->each(function ($items) {
@@ -27,48 +38,53 @@ class StudentSeeder extends Seeder
                 'age' => $items->age
             ]);
         });
+        */
 
 
         // 2 - ADDING MULTI RECORDS (HARD CODED) multi dimentional array
         // _collect_ is a feature of laravel
+        /*
+        $students = [
+            [
+                'name' => 'Hassan Khan',
+                'email' => 'test@anymail.com',
+                'city' => 'Karachi',
+                'age' => 28
+            ],
+            [
+                'name' => 'Hassan Khan 2',
+                'email' => 'test1@anymail.com',
+                'city' => 'Lahore',
+                'age' => 28
+            ],
+            [
+                'name' => 'Hassan Khan 3',
+                'email' => 'test3@anymail.com',
+                'city' => 'Lahore',
+                'age' => 30
+            ],
+            [
+                'name' => 'Hassan Khan 4',
+                'email' => 'test4@anymail.com',
+                'city' => 'Lahore',
+                'age' => 35
+            ],
+        ];
+        $students = collect($students);
+        $students->each(function ($items) {
+            student::insert($items);
+        });
+        */
 
-        // $students = [
-        //     [
-        //         'name' => 'Hassan Khan',
-        //         'email' => 'test@anymail.com',
-        //         'city' => 'Karachi',
-        //         'age' => 28
-        //     ],
-        //     [
-        //         'name' => 'Hassan Khan 2',
-        //         'email' => 'test1@anymail.com',
-        //         'city' => 'Lahore',
-        //         'age' => 28
-        //     ],
-        //     [
-        //         'name' => 'Hassan Khan 3',
-        //         'email' => 'test3@anymail.com',
-        //         'city' => 'Lahore',
-        //         'age' => 30
-        //     ],
-        //     [
-        //         'name' => 'Hassan Khan 4',
-        //         'email' => 'test4@anymail.com',
-        //         'city' => 'Lahore',
-        //         'age' => 35
-        //     ],
-        // ];
-        // $students = collect($students);
-        // $students->each(function ($items) {
-        //     student::insert($items);
-        // });
 
         // 1 - ADDING SINGLE RECORD (HARD CODED)
-        // student::create([
-        //     'name' => 'Hassan Khan',
-        //     'email' => 'test@anymail.com',
-        //     'city' => 'Karachi',
-        //     'age' => 28
-        // ]);
+        /*
+        student::create([
+            'name' => 'Hassan Khan',
+            'email' => 'test@anymail.com',
+            'city' => 'Karachi',
+            'age' => 28
+        ]);
+        */
     }
 }
