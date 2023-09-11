@@ -85,7 +85,20 @@ public function down()
         Schema::rename('new_table_name', 'old_table_name');
     }
 </pre>
+
 ### Clear cache/config
 
 php artisan cache:clear <br/>
 php artisan config:clear
+
+### Make Model (Note: Create with a name as a Singular not plural)
+
+php artisan make:model _student_
+
+### Create a seeder (Note: Always add _Seeder_ in a camel case)
+
+php artisan make:seeder StudentSeeder
+
+### Run all seed commands in _DatabaseSeeder_ file
+
+php artisan db:seed
