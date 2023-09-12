@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('libraries', function (Blueprint $table) {
-            $table->dropForeign(['stu_id']);
-            $table->dropColumn('stu_id'); // Remember!! You cannot delete direct foreign key column until you haven't drop it's foreign constraint. First always use dropForeign before using dropColumn of the foreign column.
-        });
+        // Schema::table('libraries', function (Blueprint $table) {
+        //     $table->dropForeign(['stu_id']);
+        //     $table->dropColumn('stu_id'); // Remember!! You cannot delete direct foreign key column until you haven't drop it's foreign constraint. First always use dropForeign before using dropColumn of the foreign column.
+        // });
     }
 
     /**
@@ -26,8 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('libraries', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('libraries', function (Blueprint $table) {
+        //     //
+        // });
     }
 };
