@@ -17,7 +17,10 @@ class StudentSeeder extends Seeder
     public function run()
     {
 
+        // 5 - BETTER APPROACH USING FAKE DATA see factory folder.
+
         // 4 - FAKE DATA USING FAKER
+        /*
         for ($i = 1; $i <= 10; $i++) {
             student::create([
                 'name' => fake()->name(),
@@ -26,6 +29,7 @@ class StudentSeeder extends Seeder
                 'age' => fake()->numberBetween(18, 30)
             ]);
         }
+        */
 
         // 3 - ADDING DATA USING JSON CREATED A FOLDER IN DB
         /*

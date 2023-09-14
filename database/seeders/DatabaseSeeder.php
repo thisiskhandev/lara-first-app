@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\student;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            StudentSeeder::class,
-            LibrarySeeder::class
-        ]);
+        student::factory()->count(10)->create();
+        // $this->call([
+        //     StudentSeeder::class,
+        //     LibrarySeeder::class
+        // ]);
     }
 }

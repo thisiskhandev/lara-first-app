@@ -110,3 +110,7 @@ php artisan migrate:fresh --seed
 ### Run only specific seeder file
 
 php artisan db:seed --class=UserSeeder
+
+### Create factory (Always remember to create model first)
+
+php artisan make:factory StudentFactory
