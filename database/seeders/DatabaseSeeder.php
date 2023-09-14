@@ -16,10 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        student::factory()->count(10)->create();
-        // $this->call([
-        //     StudentSeeder::class,
-        //     LibrarySeeder::class
-        // ]);
+        // Seeding using factory method
+        // student::factory()->count(10)->create();
+        // student::factory(5)->create(); // Shorthand method
+
+        // Seeding data
+        $this->call([
+            StudentSeeder::class,
+            LibrarySeeder::class
+        ]);
     }
 }
