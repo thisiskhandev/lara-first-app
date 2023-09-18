@@ -18,6 +18,7 @@ class StudentSeeder extends Seeder
     {
 
         // 5 - BETTER APPROACH USING FAKE DATA see factory folder.
+        // student::factory()->count(10)->create();
         student::factory(10)->create();
 
         // 4 - FAKE DATA USING FAKER
