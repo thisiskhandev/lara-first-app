@@ -3,6 +3,7 @@
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\studentSingleController;
 use App\Http\Controllers\TestingInvokeController;
 use Illuminate\Support\Facades\Route;
 
@@ -104,4 +105,5 @@ Route::redirect('/about-us', 'about', 301);
 // });
 
 
-Route::get('/students', [StudentController::class, 'showStudents']);
+Route::get('/students', [StudentController::class, 'showStudents'])->name('students');
+Route::get('/student/{id}', [studentSingleController::class, 'showSingleStudent'])->name('student')->whereNumber('id');

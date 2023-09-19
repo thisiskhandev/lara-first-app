@@ -116,5 +116,6 @@ php artisan db:seed --class=UserSeeder
 php artisan make:factory StudentFactory
 
 ### Create factory with model command (choose only only)
+
 php artisan make:factory StudentFactory --model=student
 php artisn make:model -f
