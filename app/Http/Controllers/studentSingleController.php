@@ -15,7 +15,7 @@ class studentSingleController extends Controller
     public function showSingleStudent($id)
     {
         $student = DB::table('students')->find($id);
-        dump($student);
+        // dump($student);
         abort_if(!isset($student), 404); // If not found redirect to 404
         return view('pages.single-pages.student', ['student' => $student]);
     }
