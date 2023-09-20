@@ -26,7 +26,7 @@
 
 <div class="">
     <a href={{route('students')}}><button class="btn btn-primary">
-            <- Back to Students</button></a>
+            < Back to Students</button></a>
 </div>
 
 @endsection

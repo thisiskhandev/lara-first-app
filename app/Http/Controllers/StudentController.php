@@ -27,6 +27,12 @@ class StudentController extends Controller
         // }
         // echo "</pre>";
 
+        // $stdDataByDate = DB::table('students')->whereDate('created_at', '2023-09-18')->get();
+        $stdDataByDate = DB::table('students')->whereDate('created_at', '2023-09-18')->whereDate('updated_at', '2023-09-20')->get();
+        $stdAge = DB::table('students')->where('age', '>', 25)->get();
+        $stdEmail = DB::table('students')->whereNot('email')->get();
+        return $stdEmail;
+
         return view('pages.students', ['cStdData' => $students]);
     }
 }

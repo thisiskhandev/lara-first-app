@@ -5,6 +5,10 @@
 @section('content')
 <h1>Students</h1>
 
+{{-- <section>
+    <input type="date" name="" id="">
+</section> --}}
+
 <table class="table table-striped table-hover">
     <thead>
         <tr>
