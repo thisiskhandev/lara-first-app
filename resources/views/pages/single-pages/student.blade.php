@@ -5,6 +5,7 @@
 @section('content')
 <h1>Single Page Student Details</h1>
 
+<h6><strong>Last Update: </strong>{{$student->updated_at}}</h6>
 <div class="card my-5" style="width: 18rem;">
     @if(!empty($student->headshot))
     <img src={{$student->headshot}} class="img-fluid d-block text-center m-auto" width="150px" alt={{$student->name}}>

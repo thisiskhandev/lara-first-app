@@ -5,9 +5,6 @@
 @section('content')
 <h1>Students</h1>
 
-{{-- <section>
-    <input type="date" name="" id="">
-</section> --}}
 
 <table class="table table-striped table-hover">
     <thead>
@@ -25,7 +22,7 @@
         <tr>
             <td scope="row">{{$sVal->id}}</td>
             <td scope="row">{{$sVal->name}}</td>
-            <td scope="row">{{$sVal->email}}</td>
+            <td scope="row">{!!$sVal->email ? $sVal->email : "<span style='color: red;'>N/A</span>"!!}</td>
             <td scope="row">{{$sVal->city}}</td>
             <td scope="row">{{$sVal->age}}</td>
             <td scope="row">{{$sVal->address}}</td>
