@@ -107,3 +107,6 @@ Route::redirect('/about-us', 'about', 301);
 
 Route::get('/students', [StudentController::class, 'showStudents'])->name('students');
 Route::get('/student/{id}', [StudentController::class, 'singleStudent'])->name('student')->whereNumber('id');
+Route::get('/add', [StudentController::class, 'addStudent']);
+Route::get('/update', [StudentController::class, 'updateStudent']);
+Route::get('/delete/{id}', [StudentController::class, 'deleteStudent'])->name('delete')->whereNumber('id');

@@ -46,4 +46,55 @@ class StudentController extends Controller
         abort_if(!isset($student), 404); // If not found redirect to 404
         return view('pages.single-pages.student', ['student' => $student]);
     }
+
+    public function addStudent()
+    {
+        /*
+        $student = DB::table('students')->insertOrIgnore([
+            'name' => 'stu4',
+            'email' => 'stu4@mail.com',
+            'city' => 'Lahore',
+            'created_at' => now(),
+            'updated_at' => now(),
+            'age' => 19,
+            'address' => 'stu4 house 123'
+        ]);
+        */
+
+        $student = DB::table('students')->upsert([
+            'name' => 'stu55',
+            'email' => 'stu4@mail.com',
+            'city' => 'Lahore',
+            'created_at' => now(),
+            'updated_at' => now(),
+            'age' => 19,
+            'address' => 'stu4 house 123'
+        ], ['email']);
+
+        if ($student) {
+            echo "<h1>New Student Created!</h1>";
+        } else {
+            echo "<h1>ERROR while creating a student</h1>";
+        }
+
+        return $student;
+    }
+
+    public function deleteStudent($id)
+    {
+        $student = DB::table('students');
+        $student->delete($id);
+        return redirect()->route('students');
+    }
+
+    public function updateStudent()
+    {
+        DB::table('students')
+            ->where('id', 13)
+            ->update([
+                'age' => 22,
+            ]);
+
+        return redirect()->route('students');
+    }
 }

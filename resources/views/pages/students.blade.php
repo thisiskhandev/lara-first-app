@@ -15,6 +15,7 @@
             <th scope="col">City</th>
             <th scope="col">Age</th>
             <th scope="col">Address</th>
+            <th scope="col-2">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
             <td scope="row">{{$sVal->age}}</td>
             <td scope="row">{{$sVal->address}}</td>
             <td><a href="{{route('student', $sVal->id)}}"><button type="button" class="btn btn-dark w-100">View</button></a></td>
+            <td><a href="{{route('delete', $sVal->id)}}"><button type="button" class="btn btn-danger w-100">Delete</button></a></td>
         </tr>
         @endforeach
     </tbody>
