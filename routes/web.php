@@ -109,6 +109,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('/students', 'showStudents')->name('students');
     Route::get('/student/{id}', 'singleStudent')->name('student')->whereNumber('id');
     Route::post('/add', 'addStudent');
-    Route::get('/update', 'updateStudent');
+    Route::put('/update/{id}', 'updateStudent')->name('update')->whereNumber('id');
+    Route::get('/update-student/{id}', 'updateView')->whereNumber('id')->name('update-student');
     Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
 });

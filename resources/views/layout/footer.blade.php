@@ -1,4 +1,4 @@
-<footer class="mt-5 bg-dark p-2 text-white text-center position-fixed bottom-0 w-100">
+<footer class="mt-5 bg-dark p-2 text-white text-center w-100">
     <main class="container">
         <h5 class="copyright m-0">All rights to reserved to Hassan Khan - {{date('Y')}}</h5>
     </main>

@@ -2,6 +2,12 @@
 
 @prepend('stylesh')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    #resetBtn {
+        display: none;
+    }
+
+</style>
 @endprepend
 
 @section('pageTitle', 'Students')
@@ -10,7 +16,7 @@
 <h1>Students</h1>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" id="addNew" class="btn btn-outline-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add New
 </button>
 
@@ -23,7 +29,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/add" method="POST">
+                <form action="/add" method="POST" id="stuAddForm">
                     @csrf
                     <div class="mb-3">
                         <input type="text" name="name" class="form-control" id="" placeholder="Name" />
@@ -41,7 +47,7 @@
                         <textarea name="address" id="" cols="30" rows="3" class="form-control" placeholder="Address" class="resize" style="resize: none"></textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Submit</button>
-                    <button type="button" class="btn btn-outline-warning" id="reset">Reset</button>
+                    <button type="button" class="btn btn-outline-warning" id="resetBtn">Reset</button>
                 </form>
             </div>
         </div>
@@ -70,6 +76,7 @@
             <td scope="row">{{$sVal->age}}</td>
             <td scope="row">{{$sVal->address}}</td>
             <td><a href="{{route('student', $sVal->id)}}"><button type="button" class="btn btn-dark w-100">View</button></a></td>
+            <td><a href="{{route('update-student', $sVal->id)}}"><button type="button" class="btn btn-info w-100">Edit</button></a></td>
             <td><a href="{{route('delete', $sVal->id)}}"><button type="button" class="btn btn-danger w-100">Delete</button></a></td>
         </tr>
         @endforeach
@@ -82,7 +89,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    console.log('hi!');
     // swal("Good job!", "You clicked the button!", "success");
     // let addStudent = document.querySelector('#addStudent button[type="submit"]');
     // const addStudentRes = async () => {
@@ -93,10 +99,18 @@
     // addStudent.addEventListener('click', function() {
     //     addStudentRes();
     // });
-    jQuery(document).ready(function() {
-        jQuery('#reset').click(function() {
-            jQuery('form')[0].reset();
+    $(document).ready(function() {
+        $('#resetBtn').click(function() {
+            $('form').trigger("reset");
+            $(this).fadeOut(300);
         });
+        $('form input[name="name"]').change(function() {
+            if ($(this).val().length > 1) {
+                $('#resetBtn').fadeIn(300);
+            } else {
+                $('#resetBtn').fadeOut(300);
+            }
+        })
     });
 
 </script>

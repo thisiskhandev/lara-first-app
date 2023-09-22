@@ -89,14 +89,31 @@ class StudentController extends Controller
         return redirect()->route('students');
     }
 
-    public function updateStudent()
+    public function updateStudent(Request $req, $id)
     {
-        DB::table('students')
-            ->where('id', 13)
+        // dd($id);
+        $student = DB::table('students')
+            ->where('id', $id)
             ->update([
-                'age' => 22,
+                'name' => $req->name,
+                'email' => $req->email,
+                'city' => $req->city,
+                'updated_at' => now(),
+                'age' => $req->age,
+                'address' => $req->address,
             ]);
 
-        return redirect()->route('students');
+        if ($student && $req) {
+            return redirect()->route('students');
+        } else {
+            echo "<script>alert('data cant be null!')</script>";
+        }
+    }
+
+    public function updateView($id)
+    {
+        $student = DB::table('students')->find($id);
+        abort_if(!isset($student), 404); // If not found redirect to 404
+        return view('pages.update-student', ['student' => $student]);
     }
 }
