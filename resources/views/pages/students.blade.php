@@ -5,6 +5,10 @@
 @section('content')
 <h1>Students</h1>
 
+<div class="">
+    <a href={{route('newstudent')}}><button class="btn btn-outline-primary">
+            Add New</button></a>
+</div>
 
 <table class="table table-striped table-hover">
     <thead>

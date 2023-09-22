@@ -47,29 +47,30 @@ class StudentController extends Controller
         return view('pages.single-pages.student', ['student' => $student]);
     }
 
-    public function addStudent()
+    public function addStudent(Request $req)
     {
-        /*
-        $student = DB::table('students')->insertOrIgnore([
-            'name' => 'stu4',
-            'email' => 'stu4@mail.com',
-            'city' => 'Lahore',
-            'created_at' => now(),
-            'updated_at' => now(),
-            'age' => 19,
-            'address' => 'stu4 house 123'
-        ]);
-        */
 
-        $student = DB::table('students')->upsert([
-            'name' => 'stu55',
-            'email' => 'stu4@mail.com',
-            'city' => 'Lahore',
+        // $student = DB::table('students')->upsert([
+        //     'name' => 'stu55',
+        //     'email' => 'stu4@mail.com',
+        //     'city' => 'Lahore',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        //     'age' => 19,
+        //     'address' => 'stu4 house 123'
+        // ], ['email']);
+
+        // return $req;
+
+        $student = DB::table('students')->insert([
+            'name' => $req->name,
+            'email' => $req->email,
+            'city' => $req->city,
             'created_at' => now(),
             'updated_at' => now(),
-            'age' => 19,
-            'address' => 'stu4 house 123'
-        ], ['email']);
+            'age' => $req->age,
+            'address' => $req->address,
+        ]);
 
         if ($student) {
             echo "<h1>New Student Created!</h1>";

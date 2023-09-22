@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\studentSingleController;
 use App\Http\Controllers\TestingInvokeController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,9 +105,14 @@ Route::redirect('/about-us', 'about', 301);
 //     return "some error...";
 // });
 
+Route::controller(StudentController::class)->group(function () {
+    Route::get('/students', 'showStudents')->name('students');
+    Route::get('/student/{id}', 'singleStudent')->name('student')->whereNumber('id');
+    Route::post('/add', 'addStudent');
+    Route::get('/update', 'updateStudent');
+    Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
+});
 
-Route::get('/students', [StudentController::class, 'showStudents'])->name('students');
-Route::get('/student/{id}', [StudentController::class, 'singleStudent'])->name('student')->whereNumber('id');
-Route::get('/add', [StudentController::class, 'addStudent']);
-Route::get('/update', [StudentController::class, 'updateStudent']);
-Route::get('/delete/{id}', [StudentController::class, 'deleteStudent'])->name('delete')->whereNumber('id');
+Route::get('/new-student', function () {
+    return view('pages.students.addnew');
+})->name('newstudent');
