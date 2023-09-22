@@ -73,7 +73,8 @@ class StudentController extends Controller
         ]);
 
         if ($student) {
-            echo "<h1>New Student Created!</h1>";
+            return redirect()->route('students');
+            // return response()->json(['message' => 'Student has been created'], 201);
         } else {
             echo "<h1>ERROR while creating a student</h1>";
         }

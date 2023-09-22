@@ -13,6 +13,7 @@ $fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
         color: #fff;
         padding: 10px 10px;
     }
+
 </style>
 @endprepend
 
@@ -22,9 +23,9 @@ $fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
 @endsection
 
 @push('script')
-    <script src="/test1.js"></script>
-    <script src="/test2.js"></script>
-    <script src="/test3.js"></script>
+<script src="/test1.js"></script>
+<script src="/test2.js"></script>
+<script src="/test3.js"></script>
 @endpush
 {{-- Push method can used multiple times while @section can't be use again. --}}
 {{-- @push('script')
