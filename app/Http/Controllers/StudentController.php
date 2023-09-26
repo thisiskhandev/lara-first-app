@@ -10,7 +10,17 @@ class StudentController extends Controller
 {
     public function showStudents()
     {
-        $students = DB::table('students')->get()->sortByDesc('id');
+        // $students = DB::table('students')->get()->sortByDesc('id');
+
+        // $students = DB::table('students')
+        //     ->orderBy('name')
+        //     ->where('age', '>', 30)
+        //     ->simplePaginate(4);
+
+        // $students = DB::table('students')->paginate(4, ['id', 'name', 'email'], 'p', 2);
+        // $students = DB::table('students')->paginate(5, ['*'], 'p', 1)->appends(['sort', 'votes']);
+        $students = DB::table('students')->orderByDesc('id')->paginate(5);
+        // $students = DB::table('students')->orderBy('id')->cursorPaginate(5);
         // return $students;
         // dd($students);
         // dump($students) // DD breaks code onwards but using dump will continue

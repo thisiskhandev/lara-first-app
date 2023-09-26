@@ -25,7 +25,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Student</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -54,6 +54,9 @@
     </div>
 </div>
 
+<div>
+    <h3>Total Students: <strong>{{ $cStdData->total() }}</strong></h3>
+</div>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -82,6 +85,9 @@
         @endforeach
     </tbody>
 </table>
+<div class="paginations">
+    {{$cStdData->links()}}
+</div>
 
 @endsection
 
