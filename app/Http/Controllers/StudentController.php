@@ -19,7 +19,8 @@ class StudentController extends Controller
 
         // $students = DB::table('students')->paginate(4, ['id', 'name', 'email'], 'p', 2);
         // $students = DB::table('students')->paginate(5, ['*'], 'p', 1)->appends(['sort', 'votes']);
-        $students = DB::table('students')->orderByDesc('id')->paginate(5);
+        // $students = DB::table('students')->orderByDesc('id')->paginate(5);
+        $students = DB::table('students')->paginate(5);
         // $students = DB::table('students')->orderBy('id')->cursorPaginate(5);
         // return $students;
         // dd($students);
@@ -44,6 +45,19 @@ class StudentController extends Controller
         $stdEmail = DB::table('students')->whereNot('email')->get();
         // return $stdDataByDate;
 
+        return view('pages.students', ['cStdData' => $students]);
+    }
+
+    public function orderStudentsAsc($id)
+    {
+        $students = DB::table('students')->orderBy($id)->paginate(5);
+        // dd($students);
+        return view('pages.students', ['cStdData' => $students]);
+    }
+
+    public function orderStudentsDesc($id)
+    {
+        $students = DB::table('students')->orderByDesc($id)->paginate(5);
         return view('pages.students', ['cStdData' => $students]);
     }
 

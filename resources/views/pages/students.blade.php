@@ -7,6 +7,22 @@
         display: none;
     }
 
+    th[scope="col"]>div {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    th[scope="col"]>div span.d-flex.flex-column>a {
+        height: 9px;
+        color: #0dcaf0;
+    }
+
+    th[scope="col"]>div span.d-flex.flex-column>a:hover {
+        color: #000;
+        transform: scale(0.9);
+    }
+
 </style>
 @endprepend
 
@@ -61,12 +77,38 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">City</th>
-            <th scope="col">Age</th>
-            <th scope="col">Address</th>
-            <th scope="col-2">Actions</th>
+            <th scope="col">
+                <div>
+                    <span>Name</span>
+                    <span class="d-flex flex-column"><a href="{{route('studentsOrderAsc','name')}}"><i class="fa-solid fa-caret-up"></i></a><a href="{{route('studentsOrderDesc','name')}}"><i class="fa-solid fa-caret-down"></i></a></span></div>
+            </th>
+            <th scope="col">
+                <div>
+                    <span>Email</span>
+                    <span class="d-flex flex-column"><a href="{{route('studentsOrderAsc','email')}}"><i class="fa-solid fa-caret-up"></i></a><a href="{{route('studentsOrderDesc','email')}}"><i class="fa-solid fa-caret-down"></i></a></span>
+                </div>
+            </th>
+            <th scope="col">
+                <div>
+                    <span>City</span>
+                    <span class="d-flex flex-column"><a href="{{route('studentsOrderAsc','city')}}"><i class="fa-solid fa-caret-up"></i></a><a href="{{route('studentsOrderDesc','city')}}"><i class="fa-solid fa-caret-down"></i></a></span>
+                </div>
+            </th>
+            <th scope="col">
+                <div>
+                    <span>Age</span>
+                    <span class="d-flex flex-column"><a href="{{route('studentsOrderAsc','age')}}"><i class="fa-solid fa-caret-up"></i></a><a href="{{route('studentsOrderDesc','age')}}"><i class="fa-solid fa-caret-down"></i></a></span>
+                </div>
+            </th>
+            <th scope="col">
+                <div>
+                    <span>Address</span>
+                    <span class="d-flex flex-column"><a href="{{route('studentsOrderAsc','address')}}"><i class="fa-solid fa-caret-up"></i></a><a href="{{route('studentsOrderDesc','address')}}"><i class="fa-solid fa-caret-down"></i></a></span>
+                </div>
+            </th>
+            <th scope="col">
+                <div>Actions</div>
+            </th>
         </tr>
     </thead>
     <tbody>

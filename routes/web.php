@@ -107,6 +107,8 @@ Route::redirect('/about-us', 'about', 301);
 
 Route::controller(StudentController::class)->group(function () {
     Route::get('/students', 'showStudents')->name('students');
+    Route::get('/students/sort={id}&asc', 'orderStudentsAsc')->name('studentsOrderAsc');
+    Route::get('/students/sort={id}&des', 'orderStudentsDesc')->name('studentsOrderDesc');
     Route::get('/student/{id}', 'singleStudent')->name('student')->whereNumber('id');
     Route::post('/add', 'addStudent');
     Route::put('/update/{id}', 'updateStudent')->name('update')->whereNumber('id');
