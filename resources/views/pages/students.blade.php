@@ -76,7 +76,7 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col"><a href="{{route('students')}}">#</a></th>
             <th scope="col">
                 <div>
                     <span>Name</span>
