@@ -21,6 +21,8 @@ class StudentController extends Controller
         // $students = DB::table('students')->paginate(5, ['*'], 'p', 1)->appends(['sort', 'votes']);
         // $students = DB::table('students')->orderByDesc('id')->paginate(5);
         $students = DB::table('students')->orderByDesc('id')->paginate(5);
+        // $students = DB::table('students')->leftJoin('libraries', 'students.id', '=', 'libraries.stu_id')->get();
+        // return $students;
         // $students = DB::table('students')->orderBy('id')->cursorPaginate(5);
         // return $students;
         // dd($students);
@@ -63,12 +65,19 @@ class StudentController extends Controller
 
     public function singleStudent($id)
     {
-        $student = DB::table('students')->find($id);
-        $studentDate = Carbon::parse($student->updated_at)->format('Y-m-d');
-        $student->updated_at = $studentDate;
-        // dd($student);
+        $student = DB::table('students')
+            ->where('students.id', '=', $id)
+            ->join('libraries', 'students.id', '=', 'libraries.stu_id')
+            ->get();
+
+        // return $student;
         abort_if(!isset($student), 404); // If not found redirect to 404
+        // foreach ($student as $key => $val) {
+        // $studentDate = Carbon::parse($val->updated_at)->format('Y-m-d');
+        // $val->updated_at = $studentDate;
+        // }
         return view('pages.single-pages.student', ['student' => $student]);
+        // dd($student);
     }
 
     public function addStudent(Request $req)
