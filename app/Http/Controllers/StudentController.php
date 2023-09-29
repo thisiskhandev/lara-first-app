@@ -88,16 +88,18 @@ class StudentController extends Controller
             ->select('lib.book', 'lib.due_date', 'lib.status')
             ->get();
 
+
         $booksTaken = DB::table('students')->where('students.id', '=', $id)
-            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->count();
+            ->rightJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->count();
 
         $booksReturned = DB::table('students')->where('students.id', '=', $id)
-            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '1')->count();
+            ->rightJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '1')->count();
 
         $booksPending = DB::table('students')->where('students.id', '=', $id)
-            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '0')->count();
+            ->rightJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '0')->count();
 
-        // return $booksReturned;
+            
+
         // $studentObj[] = $student;
         // $studentObj[] = $studentBook;
 

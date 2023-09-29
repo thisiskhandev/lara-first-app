@@ -55,6 +55,7 @@
     </div>
 </section>
 
+@if (!empty($book->book))
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -73,6 +74,7 @@
         @endforeach
     </tbody>
 </table>
+@endif
 
 <div class="">
     <a href={{route('students')}}><button class="btn btn-primary">
