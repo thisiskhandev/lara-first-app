@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,8 @@ class StudentController extends Controller
         $stdEmail = DB::table('students')->whereNot('email')->get();
         // return $stdDataByDate;
 
+        $studentsCount = DB::table('students')->where('age', '=', '20')->get();
+
         return view('pages.students', ['cStdData' => $students]);
     }
 
@@ -65,10 +68,23 @@ class StudentController extends Controller
 
     public function singleStudent($id)
     {
+        /*
         $student = DB::table('students')
             ->where('students.id', '=', $id)
-            ->join('libraries', 'students.id', '=', 'libraries.stu_id')
+            // ->where('students.name', 'like', 's%')
+            ->leftjoin('libraries', 'students.id', '=', 'libraries.stu_id')
+            ->select('students.*', 'libraries.book', 'libraries.due_date', 'libraries.status')
             ->get();
+            */
+
+        // Advance LeftJoin
+        $student = DB::table('students')->where('students.id', '=', $id)
+            ->leftJoin('libraries as lib', function (JoinClause $join) {
+                $join->on('students.id', '=', 'lib.stu_id');
+            })
+            ->select('students.*', 'lib.book', 'lib.due_date', 'lib.status')
+            ->get();
+        return $student;
 
         // return $student;
         abort_if(!isset($student), 404); // If not found redirect to 404
@@ -77,7 +93,6 @@ class StudentController extends Controller
         // $val->updated_at = $studentDate;
         // }
         return view('pages.single-pages.student', ['student' => $student]);
-        // dd($student);
     }
 
     public function addStudent(Request $req)
