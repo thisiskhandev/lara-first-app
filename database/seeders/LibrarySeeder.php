@@ -15,7 +15,7 @@ class LibrarySeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             library::create([
                 'book' => fake()->jobTitle(),
                 'due_date' => fake()->date(now()),

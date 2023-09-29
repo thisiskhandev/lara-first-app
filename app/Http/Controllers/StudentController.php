@@ -76,23 +76,36 @@ class StudentController extends Controller
             ->select('students.*', 'libraries.book', 'libraries.due_date', 'libraries.status')
             ->get();
             */
+        $student = DB::table('students')->find($id);
+
+        abort_if(!isset($student), 404); // If not found redirect to 404
 
         // Advance LeftJoin
-        $student = DB::table('students')->where('students.id', '=', $id)
+        $studentBook = DB::table('students')->where('students.id', '=', $id)
             ->leftJoin('libraries as lib', function (JoinClause $join) {
                 $join->on('students.id', '=', 'lib.stu_id');
             })
-            ->select('students.*', 'lib.book', 'lib.due_date', 'lib.status')
+            ->select('lib.book', 'lib.due_date', 'lib.status')
             ->get();
-        return $student;
 
-        // return $student;
-        abort_if(!isset($student), 404); // If not found redirect to 404
+        $booksTaken = DB::table('students')->where('students.id', '=', $id)
+            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->count();
+
+        $booksReturned = DB::table('students')->where('students.id', '=', $id)
+            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '1')->count();
+
+        $booksPending = DB::table('students')->where('students.id', '=', $id)
+            ->leftJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '0')->count();
+
+        // return $booksReturned;
+        // $studentObj[] = $student;
+        // $studentObj[] = $studentBook;
+
         // foreach ($student as $key => $val) {
         // $studentDate = Carbon::parse($val->updated_at)->format('Y-m-d');
         // $val->updated_at = $studentDate;
         // }
-        return view('pages.single-pages.student', ['student' => $student]);
+        return view('pages.single-pages.student', ['student' => $student, 'bookDetails' => $studentBook, 'booksTaken' => $booksTaken, 'booksReturned' => $booksReturned, 'booksPending' => $booksPending]);
     }
 
     public function addStudent(Request $req)
