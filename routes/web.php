@@ -115,3 +115,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('/update-student/{id}', 'updateView')->whereNumber('id')->name('update-student');
     Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
 });
+
+Route::get('/login', function () {
+    return view('pages.login');
+})->name('login');
