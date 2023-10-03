@@ -11,6 +11,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\PageController' => $baseDir . '/app/Http/Controllers/PageController.php',
     'App\\Http\\Controllers\\PostController' => $baseDir . '/app/Http/Controllers/PostController.php',
+    'App\\Http\\Controllers\\StudentController' => $baseDir . '/app/Http/Controllers/StudentController.php',
     'App\\Http\\Controllers\\TestingInvokeController' => $baseDir . '/app/Http/Controllers/TestingInvokeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

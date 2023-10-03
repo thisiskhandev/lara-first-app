@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         // Seeding data
         $this->call([
             StudentSeeder::class,
-            LibrarySeeder::class
+            LibrarySeeder::class,
+            UserSeeder::class
         ]);
     }
 }
