@@ -82,7 +82,7 @@ class StudentController extends Controller
 
         // Advance LeftJoin
         $studentBook = DB::table('students')->where('students.id', '=', $id)
-            ->leftJoin('libraries as lib', function (JoinClause $join) {
+            ->rightJoin('libraries as lib', function (JoinClause $join) {
                 $join->on('students.id', '=', 'lib.stu_id');
             })
             ->select('lib.book', 'lib.due_date', 'lib.status')
@@ -98,8 +98,6 @@ class StudentController extends Controller
         $booksPending = DB::table('students')->where('students.id', '=', $id)
             ->rightJoin('libraries as lib', 'students.id', '=', 'lib.stu_id')->where('lib.status', '=', '0')->count();
 
-            
-
         // $studentObj[] = $student;
         // $studentObj[] = $studentBook;
 
@@ -107,6 +105,8 @@ class StudentController extends Controller
         // $studentDate = Carbon::parse($val->updated_at)->format('Y-m-d');
         // $val->updated_at = $studentDate;
         // }
+
+        // return $studentBook;
         return view('pages.single-pages.student', ['student' => $student, 'bookDetails' => $studentBook, 'booksTaken' => $booksTaken, 'booksReturned' => $booksReturned, 'booksPending' => $booksPending]);
     }
 

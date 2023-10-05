@@ -54,11 +54,14 @@
         </div>
     </div>
 </section>
-
-@if (!empty($book->book))
+@if (!empty($bookDetails))
+@php
+$counter = 1;
+@endphp
 <table class="table table-striped table-hover">
     <thead>
         <tr>
+            <th scope="col">Sr #</th>
             <th scope="col">Book</th>
             <th scope="col">Status</th>
             <th scope="col">Due Date</th>
@@ -67,6 +70,7 @@
     <tbody>
         @foreach ($bookDetails as $book)
         <tr>
+            <td>{{$counter++}}</td>
             <td>{{$book->book}}</td>
             <td>{!!$book->status ? '<span class="badge text-bg-success">Returned</span>' : '<span class="badge text-bg-danger">Pending</span>'!!}</td>
             <td>{{$book->due_date}}</td>
