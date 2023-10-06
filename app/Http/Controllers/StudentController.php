@@ -143,6 +143,9 @@ class StudentController extends Controller
         }
 
         return $student;
+
+        // Validation
+        $studentData = DB::table('students');
     }
 
     public function deleteStudent($id)
