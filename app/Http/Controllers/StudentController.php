@@ -113,6 +113,17 @@ class StudentController extends Controller
     public function addStudent(Request $req)
     {
 
+        // Validation
+        $req->validate([
+            'name' => 'required',
+            'email' => 'required | email',
+            'city' => 'required',
+            'age' => 'required | numeric | max:30 | min:18',
+            'address' => 'required',
+        ]);
+
+        // return $req->all();
+
         // $student = DB::table('students')->upsert([
         //     'name' => 'stu55',
         //     'email' => 'stu4@mail.com',
@@ -123,7 +134,6 @@ class StudentController extends Controller
         //     'address' => 'stu4 house 123'
         // ], ['email']);
 
-        // return $req;
 
         $student = DB::table('students')->insert([
             'name' => $req->name,
@@ -143,9 +153,6 @@ class StudentController extends Controller
         }
 
         return $student;
-
-        // Validation
-        $studentData = DB::table('students');
     }
 
     public function deleteStudent($id)

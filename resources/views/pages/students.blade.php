@@ -35,7 +35,23 @@
 <button type="button" id="addNew" class="btn btn-outline-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add New
 </button>
+{{-- <pre>
+    @php
+        print_r($errors->all());
+    @endphp
+</pre> --}}
 
+@if (!empty($errors->all()))
+<div class="error_alert">
+    <ul class="p-0 my-2">
+        @foreach ($errors->all() as $error)
+        <li class="alert alert-danger list-inline" role="alert">
+            {{$error}}
+        </li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -159,6 +175,10 @@
                 $('#resetBtn').fadeOut(300);
             }
         })
+        setTimeout(() => {
+            $('.error_alert').fadeOut(300);
+            $('.error_alert').delay(500).html("");
+        }, 3000);
     });
 
 </script>
