@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\studentSingleController;
 use App\Http\Controllers\TestingInvokeController;
+use App\Http\Middleware\EnsureTokenIsValid as Authenticate;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -81,7 +82,7 @@ Route::get('/users', function () {
     $usersData = getUsers();
 
     return view('pages.users', ['user' => $usersData]);
-})->name('users');
+})->name('users')->middleware(Authenticate::class);
 
 // Route::get('/user/{id}', function ($id) {
 //     $users = getUsers();
@@ -115,6 +116,8 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('/update-student/{id}', 'updateView')->whereNumber('id')->name('update-student');
     Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
 });
+
+
 
 Route::get('/login', function () {
     return view('pages.login');
