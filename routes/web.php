@@ -118,11 +118,8 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
 });
 
-
-
-Route::get('/login', function () {
-    return view('pages.login');
-})->name('login');
-
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');

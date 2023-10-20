@@ -19,7 +19,12 @@ $fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
 
 
 @section('content')
-<h1>Homepage</h1>
+@dump(Auth::user())
+@if (Auth::user())
+<h1>Welcome, {{Auth::user()->name}}</h1>
+@else
+<h1>Welcome Guest</h1>
+@endif
 @endsection
 
 @push('script')
