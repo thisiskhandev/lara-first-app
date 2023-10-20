@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
@@ -122,3 +123,6 @@ Route::controller(StudentController::class)->group(function () {
 Route::get('/login', function () {
     return view('pages.login');
 })->name('login');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register');

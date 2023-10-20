@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\user;
+use App\Models\users;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $json = File::get(path: "database/json/users.json");
         $users = collect(json_decode($json));
         $users->each(function ($items) {
-            user::create([
+            users::create([
                 'username' => $items->username,
                 'name' => $items->name,
                 'email' => $items->email,
