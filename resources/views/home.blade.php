@@ -19,7 +19,7 @@ $fruits = ['one' => 'Apple','two' => 'Banana','three' => 'Mango'];
 
 
 @section('content')
-@dump(Auth::user())
+{{-- @dump(Auth::user()) --}}
 @if (Auth::user())
 <h1>Welcome, {{Auth::user()->name}}</h1>
 @else

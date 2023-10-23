@@ -63,6 +63,14 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                @if (Auth::user())
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button class="btn btn-danger ms-3">Logout</button>
+                </form>
+                <span>{{Auth::user()->name}}</span>
+                @endif
             </div>
         </div>
     </nav>

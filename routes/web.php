@@ -107,19 +107,23 @@ Route::redirect('/about-us', 'about', 301);
 //     return "some error...";
 // });
 
-Route::controller(StudentController::class)->group(function () {
-    Route::get('/students', 'showStudents')->name('students');
-    Route::get('/students/sort={id}&asc', 'orderStudentsAsc')->name('studentsOrderAsc');
-    Route::get('/students/sort={id}&des', 'orderStudentsDesc')->name('studentsOrderDesc');
-    Route::get('/student/{id}', 'singleStudent')->name('student')->whereNumber('id');
-    Route::post('/add', 'addStudent');
-    Route::put('/update/{id}', 'updateStudent')->name('update')->whereNumber('id');
-    Route::get('/update-student/{id}', 'updateView')->whereNumber('id')->name('update-student');
-    Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 });
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::controller(StudentController::class)->group(function () {
+        Route::get('/students', 'showStudents')->name('students');
+        Route::get('/students/sort={id}&asc', 'orderStudentsAsc')->name('studentsOrderAsc');
+        Route::get('/students/sort={id}&des', 'orderStudentsDesc')->name('studentsOrderDesc');
+        Route::get('/student/{id}', 'singleStudent')->name('student')->whereNumber('id');
+        Route::post('/add', 'addStudent');
+        Route::put('/update/{id}', 'updateStudent')->name('update')->whereNumber('id');
+        Route::get('/update-student/{id}', 'updateView')->whereNumber('id')->name('update-student');
+        Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
+    });
+});

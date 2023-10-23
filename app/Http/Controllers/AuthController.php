@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $user = new User();
 
-        // return $request;
+        // return print_r($user);
 
         $user->name = $request->name;
         $user->username = $request->username;
@@ -51,5 +51,11 @@ class AuthController extends Controller
         }
 
         return back()->with('error', 'Login Failed!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
