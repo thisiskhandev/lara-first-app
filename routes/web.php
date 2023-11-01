@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
@@ -127,3 +128,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'deleteStudent')->name('delete')->whereNumber('id');
     });
 });
+
+Route::get('/image-all', ImageController::class)->name('imageRoute');
+Route::post('/image-upload', [ImageController::class, 'imageUpload'])->name('imagestore');
